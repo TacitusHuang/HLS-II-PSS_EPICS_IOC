@@ -1,0 +1,6 @@
+##################  Swipe time from the record percessed by SNL programs ########################
+record (longin, "HLS:PSS:Door$(doorNo):$(doorSide)CardReader:CardID:longin") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/$(byte) T=INT16")
+  field (SCAN, "I/O Intr")
+}

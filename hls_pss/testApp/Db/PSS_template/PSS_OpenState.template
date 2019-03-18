@@ -1,0 +1,7 @@
+record (bi, "HLS:PSS:Door$(doorNo):Access$(openstate):bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/$(byte) B=$(bit)")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "No access signal")
+  field (ONAM, "Door$(doorNo) Access$(openstate)!")
+}

@@ -1,0 +1,7 @@
+record (bi, "HLS:PSS:$(SBname):bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/$(byte) B=$(bit)")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not been searched")
+  field (ONAM, "$(SBname) has been searched")
+}

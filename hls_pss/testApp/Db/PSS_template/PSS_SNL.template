@@ -1,0 +1,29 @@
+##################  Swipe time from the record percessed by SNL programs ########################
+
+record(waveform,"HLS:PSS:Door$(doorNo):OuterCardReader:event:waveform"){
+    field(NELM,"3")
+    field(FTVL,"LONG")
+}
+
+record(waveform,"HLS:PSS:Door$(doorNo):InnerCardReader:event:waveform"){
+    field(NELM,"3")
+    field(FTVL,"LONG")
+}
+
+
+##################  Event time from the record percessed by SNL programs ########################
+
+
+record(stringin, "HLS:PSS:Door$(doorNo):InnerCardReader:SNL:EventTime")
+{
+    field(DTYP, "Soft Timestamp")
+    field(INP,  "@%H:%M:%S")
+    field(TSEL,"HLS:PSS:Door$(doorNo):InnerCardReader:event:waveform.TIME CP")
+}
+
+record(stringin, "HLS:PSS:Door$(doorNo):OuterCardReader:SNL:EventTime")
+{
+    field(DTYP, "Soft Timestamp")
+    field(INP,  "@%H:%M:%S")
+    field(TSEL,"HLS:PSS:Door$(doorNo):OuterCardReader:event:waveform.TIME CP")
+}

@@ -1,0 +1,6 @@
+epicsEnvSet("ARCH","darwin-x86")
+epicsEnvSet("IOC","ioctest")
+epicsEnvSet("TOP","/Users/huangziyu/EPICS/ioc/hls_pss")
+epicsEnvSet("SNCSEQ","/Users/huangziyu/EPICS/modules/seq-2.2.4")
+epicsEnvSet("S7REDUNDANTPLC","/Users/huangziyu/EPICS/modules/s7redundantplc")
+epicsEnvSet("EPICS_BASE","/Users/huangziyu/EPICS/Base/base-3.14.12.8")

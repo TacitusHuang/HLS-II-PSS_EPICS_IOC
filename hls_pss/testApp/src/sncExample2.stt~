@@ -1,0 +1,57 @@
+program sncExample2
+
+int n1;
+int n2;
+
+int32_t linacdoor[2];
+assign linacdoor[0] to "li-1";
+assign linacdoor[1] to "li-2";
+
+int32_t ringdoor[2];
+assign ringdoor[0] to "li-5";
+assign ringdoor[1] to "li-28";
+
+
+monitor linacdoor;
+
+monitor ringdoor;
+
+ss ss1  {
+	state init {
+		when (delay(2)){
+			printf("Test Start.\n\n\n\n");
+		} state count 
+	}
+	
+	state count{
+		if(linacdoor[0] != 0){
+			n1 ++;
+			printf("The number in linac is %d\n",n1);
+		} 
+		
+		when(linacdoor[1] != 0){
+			n1 --;
+			printf("The number in linac is %d\n",n1);
+		} exit
+		
+		when(ringdoor[0] != 0){
+			n2 ++;
+			printf("The number in ring is %d\n",n2);		
+		} exit
+		
+		when(ringdoor[1] != 0){
+			n2 --;
+			printf("The number in ring is %d\n",n2);		
+		} exit
+
+		when(delay(.2)){
+		}state count	
+		
+/*		when (delay(1)) {
+		    printf("The value of linacdoor[0] is %Id\n",linacdoor[0]);
+		    printf("The value of linacdoor[0] is %Id\n",linacdoor[1]);
+		    printf("The value of linacdoor[0] is %Id\n",ringdoor[0]);
+		    printf("The value of linacdoor[0] is %Id\n\n\n",ringdoor[1]);
+		} state count  */
+	}
+}

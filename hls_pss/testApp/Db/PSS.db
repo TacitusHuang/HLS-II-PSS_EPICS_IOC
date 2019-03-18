@@ -1,0 +1,372 @@
+####################  Personnel Number Calculation ################
+
+record (longin, "HLS:PSS:Linac:PersonnelCount:longin") {
+  field (VAL, "0")
+  field (PINI, "YES")
+}
+
+record (longin, "HLS:PSS:Ringhall:PersonnelCount:longin") {
+  field (VAL, "0")
+  field (PINI, "YES")
+}
+
+record (longin, "HLS:PSS:Ringcenter:PersonnelCount:longin") {
+  field (VAL, "0")
+  field (PINI, "YES")
+}
+
+
+########################### Miscellaneous Input ########################
+
+record (bi, "HLS:PSS:CardBox:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/178 B=2")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Cards are not homing")
+  field (ONAM, "ALL Card Homing!")
+}
+
+
+record (bi, "HLS:PSS:CentralEmergency:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/178 B=3")
+  field (SCAN, "I/O Intr")
+  field (ONAM, "No Central Emergency")
+  field (ZNAM, "Central Emergency!!")
+  field (ZSV,  "MAJOR")
+}
+
+
+record (bi, "HLS:PSS:Linac:Doors:Closed:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/178 B=4")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Closed")
+  field (ONAM, "Linac Doors Closed!")  
+}
+
+
+record (bi, "HLS:PSS:Ringhall:Doors:Closed:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/178 B=5")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Closed")
+  field (ONAM, "Ringhall Doors Closed")
+}
+
+record (bi, "HLS:PSS:Ringcenter:Doors:Closed:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/178 B=6")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Closed")
+  field (ONAM, "Ringcenter Doors Closed!")
+}
+
+record (bi, "HLS:PSS:Linac:Search:Indicator:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/178 B=7")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Searching")
+  field (ONAM, "Linac is Searching!")
+}
+
+
+record (bi, "HLS:PSS:Ringhall:Search:Indicator:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=0")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Searching")
+  field (ONAM, "Ringhall is Searching!")
+}
+
+record (bi, "HLS:PSS:Ringcenter:Search:Indicator:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=1")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Searching")
+  field (ONAM, "Ringcenter is Searching!")
+}
+
+record (bi, "HLS:PSS:OperationMode:Decay:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=2")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Non-Decay Mode")
+  field (ONAM, "Decay Mode")
+}
+
+record (bi, "HLS:PSS:OperationMode:TopOff:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=3")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Non-TopOff Mode")
+  field (ONAM, "TopOff Mode")
+}
+
+record (bi, "HLS:PSS:Linac:Status:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=4")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Interlocked")
+  field (ONAM, "Linac Interlocked!")
+}
+
+record (bi, "HLS:PSS:Ring:Status:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=5")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Interlocked")
+  field (ONAM, "Ring Interlocked!")
+}
+
+record (bi, "HLS:PSS:BeamValve:Status:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=6")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "BeamValve Closed")
+  field (ONAM, "BeamValve Opened!")
+}
+
+record (bi, "HLS:PSS:Dose:Status:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/179 B=7")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Dose is limited")
+  field (ONAM, "RADIATION DOSE EXCEEDED!")
+}
+
+record (bi, "HLS:PSS:Ringhall:Status:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/180 B=0")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Interlocked")
+  field (ONAM, "Ringhall is Interlocked")
+}
+
+record (bi, "HLS:PSS:Ringcenter:Status:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/180 B=1")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Interlocked")
+  field (ONAM, "Ringcenter is Interlocked")
+}
+
+record (bi, "HLS:PSS:Linac:Status:Released:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/180 B=2")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Released")
+  field (ONAM, "Linac is Released!")
+}
+
+record (bi, "HLS:PSS:Ring:Status:Released:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/180 B=3")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Released")
+  field (ONAM, "Ring is Released!")
+}
+
+record (bi, "HLS:PSS:Ring:Status:Permitted:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/182 B=2")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Permitted")
+  field (ONAM, "Ring is Permitted!!")
+}
+
+record (bi, "HLS:PSS:Linac:Status:Permitted:bi") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/182 B=3")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Not Permitted")
+  field (ONAM, "Linac is Permitted!!")
+}
+ 
+########################### commands from IOC ########################
+
+record (bo, "HLS:PSS:Linac:Search:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=0")
+  field (ZNAM, "No Command")
+  field (ONAM, "Linac Search Start!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:Ringhall:Search:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=1")
+  field (ZNAM, "No Command")
+  field (ONAM, "Ringhall Search Start!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:Ringcenter:Search:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=2")
+  field (ZNAM, "No Command")
+  field (ONAM, "Ringcenter Search Start!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:OperationMode:Decay:Set:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=3")
+  field (ZNAM, "No operation mode")
+  field (ONAM, "Set HLS Decay!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:OperationMode:TopOff:Set:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=4")
+  field (ZNAM, "No operation mode")
+  field (ONAM, "Set HLS TopOff!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:Linac:Permit:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=5")
+  field (ZNAM, "No Command")
+  field (ONAM, "Linac Permitted!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:Ring:Permit:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=6")
+  field (ZNAM, "No Command")
+  field (ONAM, "Ring Permitted!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:Linac:Released:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 B=7")
+  field (ZNAM, "No Command")
+  field (ONAM, "Linac Released!")
+  field (HIGH, "1")
+}
+
+record (bo, "HLS:PSS:Ring:Released:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=0")
+  field (ZNAM, "No Command")
+  field (ONAM, "Ring Released!")
+  field (HIGH, "1")
+}
+
+############ DO signals for OPI ###################
+
+record (bo, "HLS:PSS:Door01:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=1")
+  field (ZNAM, "Door1 Closed:CMD!")
+  field (ONAM, "Door1 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door02:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=2")
+  field (ZNAM, "Door1 Closed:CMD!")
+  field (ONAM, "Door1 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door03:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=3")
+  field (ZNAM, "Door02 Closed:CMD!")
+  field (ONAM, "Door02 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door04:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=4")
+  field (ZNAM, "Door03 Closed:CMD!")
+  field (ONAM, "Door03 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door05:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=5")
+  field (ZNAM, "Door04 Closed:CMD!")
+  field (ONAM, "Door04 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door06:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=6")
+  field (ZNAM, "Door05 Closed:CMD!")
+  field (ONAM, "Door05 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door07:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/1 B=7")
+  field (ZNAM, "Door06 Closed:CMD!")
+  field (ONAM, "Door06 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door08:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=0")
+  field (ZNAM, "Door07 Closed:CMD!")
+  field (ONAM, "Door07 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door09:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=1")
+  field (ZNAM, "Door08 Closed:CMD!")
+  field (ONAM, "Door08 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door10:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=2")
+  field (ZNAM, "Door09 Closed:CMD!")
+  field (ONAM, "Door09 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door11:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=3")
+  field (ZNAM, "Door10 Closed:CMD!")
+  field (ONAM, "Door10 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door12:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=4")
+  field (ZNAM, "Door11 Closed:CMD!")
+  field (ONAM, "Door11 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door13:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=5")
+  field (ZNAM, "Door12 Closed:CMD!")
+  field (ONAM, "Door12 Opened:CMD!")
+  field (HIGH, "2")
+}
+
+record (bo, "HLS:PSS:Door14:Open:CMD:bo") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=6")
+  field (ZNAM, "Door13 Closed:CMD!")
+  field (ONAM, "Door13 Opened:CMD!")
+  field (HIGH, "2")
+}

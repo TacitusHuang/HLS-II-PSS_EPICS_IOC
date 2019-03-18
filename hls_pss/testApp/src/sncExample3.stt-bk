@@ -1,0 +1,295 @@
+program sncExample3
+
+
+int linac_count;
+int ringhall_count;
+int ringcenter_count;
+string time;
+assign linac_count to "HLS:PSS:LINAC:personnelCount:Cacl";
+assign ringhall_count to "HLS:PSS:RINGHALL:personnelCount:Cacl";
+assign ringcenter_count to "HLS:PSS:RINGCENTER:personnelCount:Cacl";
+
+monitor linac_count;
+monitor ringhall_count;
+monitor ringcenter_count;
+
+
+int i,j,k;
+
+int32_t linac_in[4];
+assign linac_in[0] to "HLS:PSS:door10:swipetime:in:longin";
+assign linac_in[1] to "HLS:PSS:door11:swipetime:in:longin";
+assign linac_in[2] to "HLS:PSS:door13:swipetime:in:longin";
+assign linac_in[3] to "HLS:PSS:door14:swipetime:in:longin";
+
+int32_t linac_in_temp[4]={0,0,0,0};
+
+int32_t linac_out[4];
+assign linac_out[0] to "HLS:PSS:door10:swipetime:out:longin";
+assign linac_out[1] to "HLS:PSS:door11:swipetime:out:longin";
+assign linac_out[2] to "HLS:PSS:door13:swipetime:out:longin";
+assign linac_out[3] to "HLS:PSS:door14:swipetime:out:longin";
+
+int32_t linac_out_temp[4]={0,0,0,0};
+
+int32_t ring_in[10];
+assign ring_in[0] to "HLS:PSS:door01:swipetime:in:longin";
+assign ring_in[1] to "HLS:PSS:door02:swipetime:in:longin";
+assign ring_in[2] to "HLS:PSS:door03:swipetime:in:longin";
+assign ring_in[3] to "HLS:PSS:door04:swipetime:in:longin";
+assign ring_in[4] to "HLS:PSS:door05:swipetime:in:longin";
+assign ring_in[5] to "HLS:PSS:door06:swipetime:in:longin";
+assign ring_in[6] to "HLS:PSS:door07:swipetime:in:longin";
+assign ring_in[7] to "HLS:PSS:door08:swipetime:in:longin";
+assign ring_in[8] to "HLS:PSS:door09:swipetime:in:longin";
+assign ring_in[9] to "HLS:PSS:door12:swipetime:in:longin";
+
+int32_t ring_in_temp[10]={0,0,0,0,0,0,0,0,0,0};
+
+
+int32_t ring_out[10];
+assign ring_out[0] to "HLS:PSS:door01:swipetime:out:longin";
+assign ring_out[1] to "HLS:PSS:door02:swipetime:out:longin";
+assign ring_out[2] to "HLS:PSS:door03:swipetime:out:longin";
+assign ring_out[3] to "HLS:PSS:door04:swipetime:out:longin";
+assign ring_out[4] to "HLS:PSS:door05:swipetime:out:longin";
+assign ring_out[5] to "HLS:PSS:door06:swipetime:out:longin";
+assign ring_out[6] to "HLS:PSS:door07:swipetime:out:longin";
+assign ring_out[7] to "HLS:PSS:door08:swipetime:out:longin";
+assign ring_out[8] to "HLS:PSS:door09:swipetime:out:longin";
+assign ring_out[9] to "HLS:PSS:door12:swipetime:out:longin";
+
+int32_t ring_out_temp[10]={0,0,0,0,0,0,0,0,0,0};
+
+
+monitor linac_in;
+monitor linac_out;
+
+monitor ring_in;
+monitor ring_out;
+
+int doorstate_linac_in[4];  
+assign doorstate_linac_in[0] to "HLS:PSS:door10:state:in:bo";
+assign doorstate_linac_in[1] to "HLS:PSS:door11:state:in:bo";
+assign doorstate_linac_in[2] to "HLS:PSS:door13:state:in:bo";
+assign doorstate_linac_in[3] to "HLS:PSS:door14:state:in:bo";
+
+
+int doorstate_linac_out[4];  
+assign doorstate_linac_out[0] to "HLS:PSS:door10:state:out:bo";
+assign doorstate_linac_out[1] to "HLS:PSS:door11:state:out:bo";
+assign doorstate_linac_out[2] to "HLS:PSS:door13:state:out:bo";
+assign doorstate_linac_out[3] to "HLS:PSS:door14:state:out:bo";
+
+monitor doorstate_linac_in;
+monitor doorstate_linac_out;
+
+int doorstate_ring_in[10];
+assign doorstate_ring_in[0] to "HLS:PSS:door01:state:in:bo";
+assign doorstate_ring_in[1] to "HLS:PSS:door02:state:in:bo";
+assign doorstate_ring_in[2] to "HLS:PSS:door03:state:in:bo";
+assign doorstate_ring_in[3] to "HLS:PSS:door04:state:in:bo";
+assign doorstate_ring_in[4] to "HLS:PSS:door05:state:in:bo";
+assign doorstate_ring_in[5] to "HLS:PSS:door06:state:in:bo";
+assign doorstate_ring_in[6] to "HLS:PSS:door07:state:in:bo";
+assign doorstate_ring_in[7] to "HLS:PSS:door08:state:in:bo";
+assign doorstate_ring_in[8] to "HLS:PSS:door09:state:in:bo";
+assign doorstate_ring_in[9] to "HLS:PSS:door12:state:in:bo";
+
+int doorstate_ring_out[10];
+assign doorstate_ring_out[0] to "HLS:PSS:door01:state:out:bo";
+assign doorstate_ring_out[1] to "HLS:PSS:door02:state:out:bo";
+assign doorstate_ring_out[2] to "HLS:PSS:door03:state:out:bo";
+assign doorstate_ring_out[3] to "HLS:PSS:door04:state:out:bo";
+assign doorstate_ring_out[4] to "HLS:PSS:door05:state:out:bo";
+assign doorstate_ring_out[5] to "HLS:PSS:door06:state:out:bo";
+assign doorstate_ring_out[6] to "HLS:PSS:door07:state:out:bo";
+assign doorstate_ring_out[7] to "HLS:PSS:door08:state:out:bo";
+assign doorstate_ring_out[8] to "HLS:PSS:door09:state:out:bo";
+assign doorstate_ring_out[9] to "HLS:PSS:door12:state:out:bo";
+
+monitor doorstate_ring_in;
+monitor doorstate_ring_out;
+
+
+ss ss1  {
+	state init {
+		when (delay(3)){
+			linac_count=0;
+			ringhall_count=0;
+			ringcenter_count =0;
+
+			pvPut(linac_count);	
+			pvPut(ringhall_count);	
+			pvPut(ringcenter_count);								
+			printf("Test22222 Start.\n\n\n\n");
+
+
+
+			for(i=0;i<=3;i++){
+				doorstate_linac_in[i] = 0;
+				doorstate_linac_out[i] = 0;
+
+				linac_out_temp[i]=linac_out[i];
+				linac_in_temp[i]=linac_in[i];
+
+				pvPut(doorstate_linac_in[i]);
+				pvPut(doorstate_linac_out[i]);
+			}
+
+			for(j=0;j<=9;j++){
+				doorstate_ring_in[j] = 0;
+				doorstate_ring_out[j] = 0;
+
+				ring_out_temp[j]=ring_out[j];
+				ring_in_temp[j]=ring_in[j];
+
+				pvPut(doorstate_ring_in[j]);
+				pvPut(doorstate_ring_out[j]);
+			}		 
+
+
+			printf("linac_count is %d.\n",linac_count);
+			printf("ringhall_count is %d.\n",ringhall_count);
+			printf("ringcenter_count is %d.\n",ringcenter_count);
+		
+
+		} state count 
+	}
+	
+	state count{
+		when(delay(0.5)){
+
+			for(i=0;i<=3;i++){
+
+				if((linac_out[i] != linac_out_temp[i])&&(linac_out[i] !=0)){
+
+					printf("linac_count is %d.\n",linac_count);		
+							
+					linac_count ++;
+					linac_out_temp[i] = linac_out[i];
+
+					if(doorstate_linac_out[i]==0){
+						doorstate_linac_out[i]=1;
+					}
+					else{
+						doorstate_linac_out[i]=0;
+					}			
+
+					pvPut(doorstate_linac_out[i]);									
+					printf("Door %d is opened out LINAC\n", i+1);
+					printf("PERSONNEL NUMBER in LINAC is: %d\n\n",linac_count);	
+					pvPut(linac_count);												
+				}
+
+				if((linac_in[i] != linac_in_temp[i])&&(linac_in[i] !=0)){
+
+					linac_count --;
+					linac_in_temp[i] = linac_in[i];
+
+					printf("linac_count is %d.\n",linac_count);	
+					
+					if(doorstate_linac_in[i]==0){
+						doorstate_linac_in[i]=1;
+					}
+					else{
+						doorstate_linac_in[i]=0;
+					}						
+
+					pvPut(doorstate_linac_in[i]);
+					printf("Door %d is opened in LINAC\n", i+1);
+					printf("PERSONNEL NUMBER in LINAC is:  %d\n\n",linac_count);					
+					pvPut(linac_count);										
+				}						
+			}
+
+	
+				
+			for(j=0;j<=6;j++){	
+
+				if((ring_out[j] != ring_out_temp[j])&&(ring_out[j] !=0)){
+
+					ringhall_count ++;
+					ring_out_temp[j] = ring_out[j];
+
+					if(doorstate_ring_out[j]==0){
+						doorstate_ring_out[j]=1;
+					}
+					else{
+						doorstate_ring_out[j]=0;
+					}	
+
+					pvPut(doorstate_ring_out[j]);								
+					printf("PERSONNEL NUMBER in RING HALL is: %d\n",ringhall_count);
+					printf("Swipetime in RING_out[%d] is: %d\n\n",j,ring_out);					
+					pvPut(ringhall_count);											
+				}
+
+				if((ring_in[j] != ring_in_temp[j])&&(ring_in[j] !=0)){
+
+					ringhall_count --;
+					ring_in_temp[j] = ring_in[j];
+
+					if(doorstate_ring_in[j]==0){
+						doorstate_ring_in[j]=1;
+					}
+					else{
+						doorstate_ring_in[j]=0;
+					}						
+
+					pvPut(doorstate_ring_in[j]);							
+					printf("PERSONNEL NUMBER in RING HALL is: %d\n\n",ringhall_count);
+					printf("Swipetime in RING_in[%d] is: %d\n\n",j,ring_in);					
+					pvPut(ringhall_count);											
+				}  								
+			}
+
+
+
+			for(k=7;k<=9;k++){
+
+				if((ring_in[k] != ring_in_temp[k])&&(ring_in[k] !=0)){
+					ringhall_count ++;
+					ringcenter_count --;
+					ring_in_temp[k] = ring_in[k];	
+	
+					if(doorstate_ring_in[k]==0){
+						doorstate_ring_in[k]=1;
+					}
+					else{
+						doorstate_ring_in[k]=0;
+					}	
+	
+					pvPut(doorstate_ring_in[k]);							
+					printf("PERSONNEL NUMBER in RING CENTER is: %d\n",ringcenter_count);
+					printf("PERSONNEL NUMBER in RING HALL is: %d\n\n",ringhall_count);
+					pvPut(ringcenter_count);					
+					pvPut(ringhall_count);									
+				}
+	
+
+
+				if((ring_out[k] != ring_out_temp[k])&&(ring_out[k] !=0)){
+					ringhall_count --;
+					ringcenter_count ++;
+					ring_out_temp[k] = ring_out[k];	
+	
+					if(doorstate_ring_out[k]==0){
+						doorstate_ring_out[k]=1;
+					}
+					else{
+						doorstate_ring_out[k]=0;
+					}	
+	
+					pvPut(doorstate_ring_out[k]);				
+					printf("PERSONNEL NUMBER in RING CENTER is: %d\n",ringcenter_count);
+					printf("PERSONNEL NUMBER in RING HALL is: %d\n\n",ringhall_count);
+					pvPut(ringcenter_count);					
+					pvPut(ringhall_count);					
+				}
+
+			}
+
+		} state count
+	}
+}

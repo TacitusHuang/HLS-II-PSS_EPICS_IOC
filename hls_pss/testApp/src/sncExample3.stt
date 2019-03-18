@@ -1,0 +1,426 @@
+program sncExample3
+
+int i,j,k,n;
+
+int linac_count;
+int ringhall_count;
+int ringcenter_count;
+
+assign linac_count to "HLS:PSS:Linac:PersonnelCount:longin";
+assign ringhall_count to "HLS:PSS:Ringhall:PersonnelCount:longin";
+assign ringcenter_count to "HLS:PSS:Ringcenter:PersonnelCount:longin";
+
+monitor linac_count;
+monitor ringhall_count;
+monitor ringcenter_count;
+
+
+int32_t linac_cardID_inner[4];
+assign linac_cardID_inner[0] to "HLS:PSS:Door10:InnerCardReader:CardID:longin";
+assign linac_cardID_inner[1] to "HLS:PSS:Door11:InnerCardReader:CardID:longin";
+assign linac_cardID_inner[2] to "HLS:PSS:Door13:InnerCardReader:CardID:longin";
+assign linac_cardID_inner[3] to "HLS:PSS:Door14:InnerCardReader:CardID:longin";
+
+int32_t linac_cardID_outer[4];
+assign linac_cardID_outer[0] to "HLS:PSS:Door10:OuterCardReader:CardID:longin";
+assign linac_cardID_outer[1] to "HLS:PSS:Door11:OuterCardReader:CardID:longin";
+assign linac_cardID_outer[2] to "HLS:PSS:Door13:OuterCardReader:CardID:longin";
+assign linac_cardID_outer[3] to "HLS:PSS:Door14:OuterCardReader:CardID:longin";
+
+monitor linac_cardID_inner;
+monitor linac_cardID_outer;
+
+int32_t ring_cardID_inner[10];
+assign ring_cardID_inner[0] to "HLS:PSS:Door01:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[1] to "HLS:PSS:Door02:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[2] to "HLS:PSS:Door03:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[3] to "HLS:PSS:Door04:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[4] to "HLS:PSS:Door05:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[5] to "HLS:PSS:Door06:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[6] to "HLS:PSS:Door07:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[7] to "HLS:PSS:Door08:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[8] to "HLS:PSS:Door09:InnerCardReader:CardID:longin";
+assign ring_cardID_inner[9] to "HLS:PSS:Door12:InnerCardReader:CardID:longin";
+
+int32_t ring_cardID_outer[10];
+assign ring_cardID_outer[0] to "HLS:PSS:Door01:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[1] to "HLS:PSS:Door02:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[2] to "HLS:PSS:Door03:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[3] to "HLS:PSS:Door04:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[4] to "HLS:PSS:Door05:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[5] to "HLS:PSS:Door06:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[6] to "HLS:PSS:Door07:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[7] to "HLS:PSS:Door08:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[8] to "HLS:PSS:Door09:OuterCardReader:CardID:longin";
+assign ring_cardID_outer[9] to "HLS:PSS:Door12:OuterCardReader:CardID:longin";
+
+monitor ring_cardID_inner;
+monitor ring_cardID_outer;
+
+int32_t linac_swipetime_inner[4];
+assign linac_swipetime_inner[0] to "HLS:PSS:Door10:InnerCardReader:SwipeTime:longin";
+assign linac_swipetime_inner[1] to "HLS:PSS:Door11:InnerCardReader:SwipeTime:longin";
+assign linac_swipetime_inner[2] to "HLS:PSS:Door13:InnerCardReader:SwipeTime:longin";
+assign linac_swipetime_inner[3] to "HLS:PSS:Door14:InnerCardReader:SwipeTime:longin";
+
+int32_t linac_swipetime_outer[4];
+assign linac_swipetime_outer[0] to "HLS:PSS:Door10:OuterCardReader:SwipeTime:longin";
+assign linac_swipetime_outer[1] to "HLS:PSS:Door11:OuterCardReader:SwipeTime:longin";
+assign linac_swipetime_outer[2] to "HLS:PSS:Door13:OuterCardReader:SwipeTime:longin";
+assign linac_swipetime_outer[3] to "HLS:PSS:Door14:OuterCardReader:SwipeTime:longin";
+
+monitor linac_swipetime_inner;
+monitor linac_swipetime_outer;
+
+int32_t linac_swipetime_inner_temp[4]={0,0,0,0};
+int32_t linac_swipetime_outer_temp[4]={0,0,0,0};
+
+
+int32_t ring_swipetime_inner[10];
+assign ring_swipetime_inner[0] to "HLS:PSS:Door01:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[1] to "HLS:PSS:Door02:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[2] to "HLS:PSS:Door03:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[3] to "HLS:PSS:Door04:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[4] to "HLS:PSS:Door05:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[5] to "HLS:PSS:Door06:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[6] to "HLS:PSS:Door07:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[7] to "HLS:PSS:Door08:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[8] to "HLS:PSS:Door09:InnerCardReader:SwipeTime:longin";
+assign ring_swipetime_inner[9] to "HLS:PSS:Door12:InnerCardReader:SwipeTime:longin";
+
+int32_t ring_swipetime_outer[10];
+assign ring_swipetime_outer[0] to "HLS:PSS:Door01:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[1] to "HLS:PSS:Door02:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[2] to "HLS:PSS:Door03:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[3] to "HLS:PSS:Door04:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[4] to "HLS:PSS:Door05:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[5] to "HLS:PSS:Door06:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[6] to "HLS:PSS:Door07:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[7] to "HLS:PSS:Door08:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[8] to "HLS:PSS:Door09:OuterCardReader:SwipeTime:longin";
+assign ring_swipetime_outer[9] to "HLS:PSS:Door12:OuterCardReader:SwipeTime:longin";
+
+monitor ring_swipetime_inner;
+monitor ring_swipetime_outer;
+
+int32_t ring_swipetime_inner_temp[10]={0,0,0,0,0,0,0,0,0,0};
+int32_t ring_swipetime_outer_temp[10]={0,0,0,0,0,0,0,0,0,0};
+
+
+int32_t ring_door_accesspermitted[10];
+assign ring_door_accesspermitted[0] to "HLS:PSS:Door01:AccessPermitted:bi";
+assign ring_door_accesspermitted[1] to "HLS:PSS:Door02:AccessPermitted:bi";
+assign ring_door_accesspermitted[2] to "HLS:PSS:Door03:AccessPermitted:bi";
+assign ring_door_accesspermitted[3] to "HLS:PSS:Door04:AccessPermitted:bi";
+assign ring_door_accesspermitted[4] to "HLS:PSS:Door05:AccessPermitted:bi";
+assign ring_door_accesspermitted[5] to "HLS:PSS:Door06:AccessPermitted:bi";
+assign ring_door_accesspermitted[6] to "HLS:PSS:Door07:AccessPermitted:bi";
+assign ring_door_accesspermitted[7] to "HLS:PSS:Door08:AccessPermitted:bi";
+assign ring_door_accesspermitted[8] to "HLS:PSS:Door09:AccessPermitted:bi";
+assign ring_door_accesspermitted[9] to "HLS:PSS:Door12:AccessPermitted:bi";
+
+int32_t linac_door_accesspermitted[4];
+assign linac_door_accesspermitted[0] to "HLS:PSS:Door10:AccessPermitted:bi";
+assign linac_door_accesspermitted[1] to "HLS:PSS:Door11:AccessPermitted:bi";
+assign linac_door_accesspermitted[2] to "HLS:PSS:Door13:AccessPermitted:bi";
+assign linac_door_accesspermitted[3] to "HLS:PSS:Door14:AccessPermitted:bi";
+
+monitor ring_door_accesspermitted;
+monitor linac_door_accesspermitted;
+
+int32_t ring_door_accessrefused[10];
+assign ring_door_accessrefused[0] to "HLS:PSS:Door01:AccessRefused:bi";
+assign ring_door_accessrefused[1] to "HLS:PSS:Door02:AccessRefused:bi";
+assign ring_door_accessrefused[2] to "HLS:PSS:Door03:AccessRefused:bi";
+assign ring_door_accessrefused[3] to "HLS:PSS:Door04:AccessRefused:bi";
+assign ring_door_accessrefused[4] to "HLS:PSS:Door05:AccessRefused:bi";
+assign ring_door_accessrefused[5] to "HLS:PSS:Door06:AccessRefused:bi";
+assign ring_door_accessrefused[6] to "HLS:PSS:Door07:AccessRefused:bi";
+assign ring_door_accessrefused[7] to "HLS:PSS:Door08:AccessRefused:bi";
+assign ring_door_accessrefused[8] to "HLS:PSS:Door09:AccessRefused:bi";
+assign ring_door_accessrefused[9] to "HLS:PSS:Door12:AccessRefused:bi";
+
+int32_t linac_door_accessrefused[4];
+assign linac_door_accessrefused[0] to "HLS:PSS:Door10:AccessRefused:bi";
+assign linac_door_accessrefused[1] to "HLS:PSS:Door11:AccessRefused:bi";
+assign linac_door_accessrefused[2] to "HLS:PSS:Door13:AccessRefused:bi";
+assign linac_door_accessrefused[3] to "HLS:PSS:Door14:AccessRefused:bi";
+
+monitor ring_door_accessrefused;
+monitor linac_door_accessrefused;
+
+
+
+
+int32_t linac_door_inner_event[4][3];  
+assign linac_door_inner_event[0] to "HLS:PSS:Door10:InnerCardReader:event:waveform";
+assign linac_door_inner_event[1] to "HLS:PSS:Door11:InnerCardReader:event:waveform";
+assign linac_door_inner_event[2] to "HLS:PSS:Door13:InnerCardReader:event:waveform";
+assign linac_door_inner_event[3] to "HLS:PSS:Door14:InnerCardReader:event:waveform";
+
+int32_t linac_door_outer_event[4][3];  
+assign linac_door_outer_event[0] to "HLS:PSS:Door10:OuterCardReader:event:waveform";
+assign linac_door_outer_event[1] to "HLS:PSS:Door11:OuterCardReader:event:waveform";
+assign linac_door_outer_event[2] to "HLS:PSS:Door13:OuterCardReader:event:waveform";
+assign linac_door_outer_event[3] to "HLS:PSS:Door14:OuterCardReader:event:waveform";
+
+monitor linac_door_inner_event;
+monitor linac_door_outer_event;
+
+
+int32_t ring_door_inner_event[10][3];
+assign ring_door_inner_event[0] to "HLS:PSS:Door01:InnerCardReader:event:waveform";
+assign ring_door_inner_event[1] to "HLS:PSS:Door02:InnerCardReader:event:waveform";
+assign ring_door_inner_event[2] to "HLS:PSS:Door03:InnerCardReader:event:waveform";
+assign ring_door_inner_event[3] to "HLS:PSS:Door04:InnerCardReader:event:waveform";
+assign ring_door_inner_event[4] to "HLS:PSS:Door05:InnerCardReader:event:waveform";
+assign ring_door_inner_event[5] to "HLS:PSS:Door06:InnerCardReader:event:waveform";
+assign ring_door_inner_event[6] to "HLS:PSS:Door07:InnerCardReader:event:waveform";
+assign ring_door_inner_event[7] to "HLS:PSS:Door08:InnerCardReader:event:waveform";
+assign ring_door_inner_event[8] to "HLS:PSS:Door09:InnerCardReader:event:waveform";
+assign ring_door_inner_event[9] to "HLS:PSS:Door12:InnerCardReader:event:waveform";
+
+int32_t ring_door_outer_event[10][3];
+assign ring_door_outer_event[0] to "HLS:PSS:Door01:OuterCardReader:event:waveform";
+assign ring_door_outer_event[1] to "HLS:PSS:Door02:OuterCardReader:event:waveform";
+assign ring_door_outer_event[2] to "HLS:PSS:Door03:OuterCardReader:event:waveform";
+assign ring_door_outer_event[3] to "HLS:PSS:Door04:OuterCardReader:event:waveform";
+assign ring_door_outer_event[4] to "HLS:PSS:Door05:OuterCardReader:event:waveform";
+assign ring_door_outer_event[5] to "HLS:PSS:Door06:OuterCardReader:event:waveform"; 
+assign ring_door_outer_event[6] to "HLS:PSS:Door07:OuterCardReader:event:waveform";
+assign ring_door_outer_event[7] to "HLS:PSS:Door08:OuterCardReader:event:waveform";
+assign ring_door_outer_event[8] to "HLS:PSS:Door09:OuterCardReader:event:waveform";
+assign ring_door_outer_event[9] to "HLS:PSS:Door12:OuterCardReader:event:waveform";
+
+monitor ring_door_inner_event;
+monitor ring_door_outer_event;
+
+
+ss PersonnelManage {
+	state init {
+		when (delay(1)){
+			printf("\n\nSNL Init Start.\n\n\n\n");
+
+			linac_count=0;
+			ringhall_count=0;
+			ringcenter_count =0;
+				
+
+
+			for(i=0;i<=3;i++){
+				for(n=0;n<=2;n++){
+					linac_door_inner_event[i][n] = 0;
+					linac_door_outer_event[i][n] = 0;
+				}
+
+				linac_swipetime_outer_temp[i]=linac_swipetime_outer[i];
+				linac_swipetime_inner_temp[i]=linac_swipetime_inner[i];
+
+				pvPut(linac_door_inner_event[i]);
+				pvPut(linac_door_outer_event[i]);
+			}
+
+			for(j=0;j<=9;j++){
+				for(n=0;n<=2;n++){				
+					ring_door_inner_event[j][n] = 0;
+					ring_door_outer_event[j][n] = 0;
+				}
+				ring_swipetime_outer_temp[j]=ring_swipetime_outer[j];
+				ring_swipetime_inner_temp[j]=ring_swipetime_inner[j];
+
+				pvPut(ring_door_inner_event[j]);
+				pvPut(ring_door_outer_event[j]);
+			}		 
+
+			printf("linac_count is %d.\n",linac_count);
+			printf("ringhall_count is %d.\n",ringhall_count);
+			printf("ringcenter_count is %d.\n",ringcenter_count);	
+			
+		} state count 
+	}
+	
+	state count{
+		when(delay(0.1)){
+
+			for(i=0;i<=1;i++){
+
+				if(linac_swipetime_outer[i] != linac_swipetime_outer_temp[i]){
+					linac_door_outer_event[i][0]++;
+					linac_door_outer_event[i][1] = linac_cardID_outer[i];
+
+					linac_swipetime_outer_temp[i]= linac_swipetime_outer[i];		
+
+					printf("linac_swipetime_outer[%d] is %x.\n",i,linac_swipetime_outer[i]);	
+
+					if(linac_door_accesspermitted[i] ==1){
+						linac_count ++;
+						linac_door_outer_event[i][2] =1;
+
+						pvPut(linac_count);
+					
+					}else if(linac_door_accessrefused[i] ==1){
+						linac_door_outer_event[i][2] = 0;
+										
+					}
+					pvPut(linac_door_outer_event[i]);					
+				}
+
+
+				if(linac_swipetime_inner[i] != linac_swipetime_inner_temp[i]){
+					linac_door_inner_event[i][0]++;
+					linac_door_inner_event[i][1] = linac_cardID_inner[i];
+
+					linac_swipetime_inner_temp[i]= linac_swipetime_inner[i];
+
+					if(linac_door_accesspermitted[i] == 1){
+						linac_count --;
+						linac_door_inner_event[i][2]=1;
+
+						pvPut(linac_count);		
+					}else if(linac_door_accessrefused[i] == 1){
+						linac_door_inner_event[i][2]=0;
+				
+					}
+					pvPut(linac_door_inner_event[i]);
+				}
+			}
+
+
+			for(i=2;i<=3;i++){
+
+				if(linac_swipetime_outer[i] != linac_swipetime_outer_temp[i]){
+					linac_door_outer_event[i][0]++;
+					linac_door_outer_event[i][1] = linac_cardID_outer[i];
+
+					linac_swipetime_outer_temp[i]= linac_swipetime_outer[i];
+
+					if(linac_door_accesspermitted[i] ==1){
+						linac_door_outer_event[i][2]=1;
+
+						pvPut(linac_count);
+						
+					}else if(linac_door_accessrefused[i] ==1){
+						linac_door_outer_event[i][2]=0;
+	
+					}
+					pvPut(linac_door_outer_event[i]);					
+				}
+
+
+				if(linac_swipetime_inner[i] != linac_swipetime_inner_temp[i]){
+					linac_door_inner_event[i][0]++;
+					linac_door_inner_event[i][1] = linac_cardID_inner[i];
+
+					linac_swipetime_inner_temp[i]= linac_swipetime_inner[i];
+
+					if(linac_door_accesspermitted[i] ==1){
+						linac_door_inner_event[i][2]=1;
+
+						pvPut(linac_count);
+						
+					}else if(linac_door_accessrefused[i] ==1){
+						linac_door_inner_event[i][2]=0;
+		
+					}
+					pvPut(linac_door_inner_event[i]);					
+				}
+			}
+					
+			for(j=0;j<=6;j++){	
+
+				if(ring_swipetime_outer[j] != ring_swipetime_outer_temp[j]){
+					ring_door_outer_event[j][0]++;
+					ring_door_outer_event[j][1] = ring_cardID_outer[j];
+
+					ring_swipetime_outer_temp[j] = ring_swipetime_outer[j];
+
+					if(ring_door_accesspermitted[j] ==1){
+						ringhall_count ++;
+						ring_door_outer_event[j][2] =1;
+
+						pvPut(ringhall_count);
+
+					}else if(ring_door_accessrefused[j] ==1){
+						ring_door_outer_event[j][2] = 0;
+				
+					}
+					pvPut(ring_door_outer_event[j]);											
+				}
+
+
+				if(ring_swipetime_inner[j] != ring_swipetime_inner_temp[j]){
+					ring_door_inner_event[j][0]++;
+					ring_door_inner_event[j][1] = ring_cardID_inner[j];
+
+					ring_swipetime_inner_temp[j] = ring_swipetime_inner[j];
+
+					if(ring_door_accesspermitted[j] ==1){
+						ringhall_count --;
+						ring_door_inner_event[j][2] = 1;
+
+						pvPut(ringhall_count);
+
+						
+					}else if(ring_door_accessrefused[j] ==1){
+						ring_door_inner_event[j][2] = 0;
+									
+					}
+					pvPut(ring_door_inner_event[j]);					
+				}	
+			}
+
+
+			for(k=7;k<=9;k++){
+
+				if(ring_swipetime_outer[k] != ring_swipetime_outer_temp[k]){
+					ring_door_outer_event[k][0]++;
+					ring_door_outer_event[k][1] = ring_cardID_outer[k];
+
+					ring_swipetime_outer_temp[k] = ring_swipetime_outer[k];
+
+
+					if(ring_door_accesspermitted[k] ==1){
+						ringhall_count --;
+						ringcenter_count ++;
+
+						ring_door_outer_event[k][2] = 1;
+
+						pvPut(ringhall_count);
+						pvPut(ringcenter_count);
+						
+					}else if(ring_door_accessrefused[k] ==1){
+						ring_door_outer_event[k][2] = 0;
+									
+					}
+					pvPut(ring_door_outer_event[k]);	
+
+				}
+
+
+
+				if(ring_swipetime_inner[k] != ring_swipetime_inner_temp[k]){
+					ring_door_inner_event[k][0]++;
+					ring_door_inner_event[k][1] = ring_cardID_inner[k];
+
+					ring_swipetime_inner_temp[k] = ring_swipetime_inner[k];
+
+					if(ring_door_accesspermitted[k] ==1){
+						ringhall_count ++;
+						ringcenter_count --;
+
+						ring_door_inner_event[k][2] = 1;
+
+						pvPut(ringhall_count);
+						pvPut(ringcenter_count);
+						
+					}else if(ring_door_accessrefused[k] ==1){
+						ring_door_inner_event[k][2] = 0;
+									
+					}
+					pvPut(ring_door_inner_event[k]);					
+				}				
+			}
+
+		} state count
+	}
+}

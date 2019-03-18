@@ -1,0 +1,124 @@
+record (longin, "li-1") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/10 T=INT32")
+  field (SCAN, "I/O Intr")
+}
+
+record (longin, "li-5") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/26 T=INT32")
+  field (SCAN, "I/O Intr")
+}
+
+record (longin, "li-28") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/118 T=INT32")
+  field (SCAN, "I/O Intr")
+}
+
+record (bi, "bi-1") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/0 B=0")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "No Alarm")
+  field (ONAM, "ALARM")
+  field (ZSV,  "MAJOR")
+}
+
+record (bi, "bi-2") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/0 B=1")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Unlocked")
+  field (ONAM, "LOCKED")
+  field (ZSV,  "MAJOR")
+}
+
+record (bi, "bi-3") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/2 B=0")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "No Alarm")
+  field (ONAM, "ALARM")
+  field (ZSV,  "MAJOR")
+}
+
+record (bi, "bi-4") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/2 B=1")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Unlocked")
+  field (ONAM, "LOCKED")
+  field (ZSV,  "MAJOR")
+}
+
+record (bi, "bi-5") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/4 B=0")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "No Alarm")
+  field (ONAM, "ALARM")
+  field (ZSV,  "MAJOR")
+}
+
+record (bi, "bi-6") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/4 B=1")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Unlocked")
+  field (ONAM, "LOCKED")
+  field (ZSV,  "MAJOR")
+}
+
+record (bi, "bi-7") {
+  field (DTYP, "S7RedundantPLC")
+  field (INP,  "@$(plcname)/6 B=0")
+  field (SCAN, "I/O Intr")
+  field (ZNAM, "Unlocked")
+  field (ONAM, "LOCKED")
+  field (ZSV,  "MAJOR")
+}
+
+record (bo, "bo-0") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/2 B=0")
+  field (ZNAM, "O")
+  field (ONAM, "I")
+  field (PINI, "YES")
+}
+
+
+
+record (ao, "ao-1") {
+  # map range 0.0000 ... 20.0000mA to 0 ... 30000
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0")
+  field (EGUL, "-20")
+  field (EGUF, "20")
+  field (LINR, "LINEAR")
+  field (PREC, "2")
+  #field (DOL,  "1.2345")
+  #field (PINI, "YES")
+}
+
+record (ao, "ao-2") {
+  # map range 0.0000 ... 10.0000 to 0 ... 1000
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0 'T=INT16 L=-10 H=10'")
+  field (EGUL, "-1000")
+  field (EGUF, "1000")
+  #field (LOPR, "-1000")
+  #field (HOPR, "1000")
+  field (LINR, "LINEAR")
+  field (PREC, "2")
+  field (DOL,  "1.2345")
+  field (PINI, "YES")
+}
+
+
+record (mbbo, "mbbo-1") {
+  field (DTYP, "S7RedundantPLC")
+  field (OUT,  "@$(plcname)/0")
+  field (NOBT, "1")
+  field (SHFT, "0")
+  field (PINI, "YES")

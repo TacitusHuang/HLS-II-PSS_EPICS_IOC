@@ -1,0 +1,222 @@
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_SNL.template {
+    pattern { doorNo }
+        { 01 }
+        { 02 }
+        { 03 }
+        { 04 }
+        { 05 }
+        { 06 }
+        { 07 }
+        { 08 }
+        { 09 }
+        { 10 }
+        { 11 }
+        { 12 }
+        { 13 }
+        { 14 }    
+}
+
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_cardID.template {
+    pattern { plcname,doorSide,doorNo,byte }
+        { PLC-1,Outer,01,00 }
+        { PLC-1,Inner,01,02 }  
+        { PLC-1,Outer,02,12 }
+        { PLC-1,Inner,02,14 }       
+        { PLC-1,Outer,03,24}
+        { PLC-1,Inner,03,26 }  
+        { PLC-1,Outer,04,36 }
+        { PLC-1,Inner,04,38 }  
+        { PLC-1,Outer,05,48 }
+        { PLC-1,Inner,05,50 }  
+        { PLC-1,Outer,06,60 }
+        { PLC-1,Inner,06,62 }  
+        { PLC-1,Outer,07,72 }
+        { PLC-1,Inner,07,74 }  
+        { PLC-1,Outer,08,84 }
+        { PLC-1,Inner,08,86 }  
+        { PLC-1,Outer,09,96 }
+        { PLC-1,Inner,09,98 }  
+        { PLC-1,Outer,10,108 }
+        { PLC-1,Inner,10,110 }
+        { PLC-1,Outer,11,120 }
+        { PLC-1,Inner,11,122 }    
+        { PLC-1,Outer,12,132 }
+        { PLC-1,Inner,12,134 }  
+        { PLC-1,Outer,13,144 }
+        { PLC-1,Inner,13,146 }  
+        { PLC-1,Outer,14,156 }
+        { PLC-1,Inner,14,158 }  
+
+}
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_SwipeTime.template {
+    pattern { plcname,doorSide,doorNo,byte }
+        { PLC-1,Outer,01,4 }
+        { PLC-1,Inner,01,8 }
+        { PLC-1,Outer,02,16 }
+        { PLC-1,Inner,02,20 }
+        { PLC-1,Outer,03,28 }
+        { PLC-1,Inner,03,32 } 
+        { PLC-1,Outer,04,40 }
+        { PLC-1,Inner,04,44 } 
+        { PLC-1,Outer,05,52 }
+        { PLC-1,Inner,05,56 } 
+        { PLC-1,Outer,06,64 }
+        { PLC-1,Inner,06,68 } 
+        { PLC-1,Outer,07,76 }
+        { PLC-1,Inner,07,80 } 
+        { PLC-1,Outer,08,88 }
+        { PLC-1,Inner,08,92 } 
+        { PLC-1,Outer,09,100 }
+        { PLC-1,Inner,09,104 } 
+        { PLC-1,Outer,10,112 }
+        { PLC-1,Inner,10,116 }  
+        { PLC-1,Outer,11,124 }
+        { PLC-1,Inner,11,128 } 
+        { PLC-1,Outer,12,136 }
+        { PLC-1,Inner,12,140 } 
+        { PLC-1,Outer,13,148 }
+        { PLC-1,Inner,13,152 } 
+        { PLC-1,Outer,14,160 }
+        { PLC-1,Inner,14,164 } 
+}
+
+
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_EB.template {
+    pattern { plcname,EBname,byte,bit }
+        { PLC-1,LEB1,168,0 }
+        { PLC-1,LEB2,168,1 }
+        { PLC-1,LEB3,168,2 }
+        { PLC-1,LEB4,168,3 }
+        { PLC-1,LEB5,168,4 }
+        { PLC-1,LEB6,168,5 }
+        { PLC-1,LEB7,168,6 }
+        { PLC-1,LEB8,168,7 }
+        { PLC-1,LEB9,169,0 }
+        { PLC-1,LEB10,169,1 }
+        { PLC-1,LEB11,169,2 }
+        { PLC-1,LEBALL,169,3 }
+        { PLC-1,RhEB1,169,4 }
+        { PLC-1,RhEB2,169,5 }
+        { PLC-1,RhEB3,169,6 }
+        { PLC-1,RhEB4,169,7 }
+        { PLC-1,RhEB5,170,0 }
+        { PLC-1,RhEB6,170,1 }
+        { PLC-1,RhEBALL,170,2 }
+        { PLC-1,RcEBALL,170,3 }
+        { PLC-1,RcEB1,170,4 }
+        { PLC-1,RcEB2,170,5 }
+        { PLC-1,RcEB3,170,6 }
+        { PLC-1,RcEB4,170,7 }
+        { PLC-1,RcEB5,171,0 }
+        { PLC-1,RcEB6,171,1 }
+        { PLC-1,RcEB7,171,2 }
+        { PLC-1,RcEB8,171,3 }
+}
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_SB.template {
+    pattern { plcname,SBname,byte,bit }
+        { PLC-1,LSB1,171,4 }
+        { PLC-1,LSB2,171,5 }
+        { PLC-1,LSB3,171,6 }
+        { PLC-1,LSB4,171,7 }
+        { PLC-1,LSB5,172,0 }
+        { PLC-1,LSB6,172,1 }
+        { PLC-1,LSB7,172,2 }
+        { PLC-1,LSB8,172,3 }
+        { PLC-1,LSB9,172,4 }
+        { PLC-1,LSB10,172,5 }
+        { PLC-1,LSB11,172,6 }
+        { PLC-1,LSBALL,172,7 }
+        { PLC-1,RhSB1,173,2 }
+        { PLC-1,RhSB2,173,3 }
+        { PLC-1,RhSB3,173,4 }
+        { PLC-1,RhSB4,173,5 }
+        { PLC-1,RhSB5,173,6 }
+        { PLC-1,RhSB6,173,7 }
+        { PLC-1,RhSBALL,174,0 }
+        { PLC-1,RcSB1,174,3 }
+        { PLC-1,RcSB2,174,4 }
+        { PLC-1,RcSB3,174,5 }
+        { PLC-1,RcSB4,174,6 }
+        { PLC-1,RcSB5,174,7 }
+        { PLC-1,RcSB6,175,0 }
+        { PLC-1,RcSB7,175,1 }
+        { PLC-1,RcSB8,175,2 }
+        { PLC-1,RcSBALL,175,3 }
+}
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_RB.template {
+    pattern { plcname,RBname,byte,bit }
+        { PLC-1,LRB1,175,5 }
+        { PLC-1,LRB2,175,6 }
+        { PLC-1,LRB3,175,7 }
+        { PLC-1,LRB4,176,0 }
+        { PLC-1,LRBALL,176,1 }
+        { PLC-1,RhRB1,176,4 }
+        { PLC-1,RhRB2,176,5 }
+        { PLC-1,RhRB3,176,6 }
+        { PLC-1,RhRB4,176,7 }
+        { PLC-1,RhRB5,177,0 }
+        { PLC-1,RhRB6,177,1 }
+        { PLC-1,RhRB7,177,2 }
+        { PLC-1,RhRBALL,177,3 }
+        { PLC-1,RcRB1,177,4 }
+        { PLC-1,RcRB2,177,5 }
+        { PLC-1,RcRB3,177,6 }
+        { PLC-1,RcRB4,177,7 }
+        { PLC-1,RcRB5,178,0 }
+        { PLC-1,RcRBALL,178,1 }
+}
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_OpenState.template {
+    pattern { plcname,doorNo,openstate,byte,bit }
+        { PLC-1,01,Refused,212,0 }
+        { PLC-1,02,Refused,212,1 }
+        { PLC-1,03,Refused,212,2 }
+        { PLC-1,04,Refused,212,3 }
+        { PLC-1,05,Refused,212,4 }
+        { PLC-1,06,Refused,212,5 }
+        { PLC-1,07,Refused,212,6 }
+        { PLC-1,08,Refused,212,7 }
+        { PLC-1,09,Refused,213,0 }
+        { PLC-1,10,Refused,213,1 }
+        { PLC-1,11,Refused,213,2 }
+        { PLC-1,12,Refused,213,3 }
+        { PLC-1,13,Refused,213,4 }
+        { PLC-1,14,Refused,213,5 }
+        { PLC-1,01,Permitted,213,6 }
+        { PLC-1,02,Permitted,213,7 }
+        { PLC-1,03,Permitted,214,0 }
+        { PLC-1,04,Permitted,214,1 }
+        { PLC-1,05,Permitted,214,2 }
+        { PLC-1,06,Permitted,214,3 }
+        { PLC-1,07,Permitted,214,4 }
+        { PLC-1,08,Permitted,214,5 }
+        { PLC-1,09,Permitted,214,6 }
+        { PLC-1,10,Permitted,214,7 }
+        { PLC-1,11,Permitted,215,0 }
+        { PLC-1,12,Permitted,215,1 }
+        { PLC-1,13,Permitted,215,2 }
+        { PLC-1,14,Permitted,215,3 }
+}
+
+file /home/Xkakashi/ioc/PSS/testApp/Db/PSS_template/PSS_DoorSate.template {
+    pattern { plcname,doorNo,byte,bit }
+        { PLC-1,01,180,4 }
+        { PLC-1,02,180,5 }
+        { PLC-1,03,180,6 }
+        { PLC-1,04,180,7 }
+        { PLC-1,05,181,0 }
+        { PLC-1,06,181,1 }
+        { PLC-1,07,181,2 }
+        { PLC-1,08,181,3 }
+        { PLC-1,09,181,4 }
+        { PLC-1,10,181,5 }
+        { PLC-1,11,181,6 }
+        { PLC-1,12,181,7 }
+        { PLC-1,13,182,0 }
+        { PLC-1,14,182,1 }
+}

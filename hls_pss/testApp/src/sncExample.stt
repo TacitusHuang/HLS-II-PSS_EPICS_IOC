@@ -1,0 +1,246 @@
+program sncExample
+
+int i=0;
+
+
+
+int32_t cardwrite_in[14];
+assign cardwrite_in[0] to "Cardnumber-1";
+assign cardwrite_in[1] to "Cardnumber-3";
+assign cardwrite_in[2] to "Cardnumber-5";
+assign cardwrite_in[3] to "Cardnumber-7";
+assign cardwrite_in[4] to "Cardnumber-9";
+assign cardwrite_in[5] to "Cardnumber-11";
+assign cardwrite_in[6] to "Cardnumber-13";
+assign cardwrite_in[7] to "Cardnumber-15";
+assign cardwrite_in[8] to "Cardnumber-17";
+assign cardwrite_in[9] to "Cardnumber-19";
+assign cardwrite_in[10] to "Cardnumber-21";
+assign cardwrite_in[11] to "Cardnumber-23";
+assign cardwrite_in[12] to "Cardnumber-25";
+assign cardwrite_in[13] to "Cardnumber-27";
+
+int32_t cardwrite_out[14];
+assign cardwrite_out[0] to "Cardnumber-2";
+assign cardwrite_out[1] to "Cardnumber-4";
+assign cardwrite_out[2] to "Cardnumber-6";
+assign cardwrite_out[3] to "Cardnumber-8";
+assign cardwrite_out[4] to "Cardnumber-10";
+assign cardwrite_out[5] to "Cardnumber-12";
+assign cardwrite_out[6] to "Cardnumber-14";
+assign cardwrite_out[7] to "Cardnumber-16";
+assign cardwrite_out[8] to "Cardnumber-18";
+assign cardwrite_out[9] to "Cardnumber-20";
+assign cardwrite_out[10] to "Cardnumber-22";
+assign cardwrite_out[11] to "Cardnumber-24";
+assign cardwrite_out[12] to "Cardnumber-26";
+assign cardwrite_out[13] to "Cardnumber-28";
+
+
+monitor cardwrite_in;
+monitor cardwrite_out;
+
+
+
+int cyclereset_snl;
+assign  cyclereset_snl to "cyclereset:ao";
+monitor cyclereset_snl;
+
+
+ss ss1  {
+	state init {
+		when (delay(1)){
+			printf("Test1111 Start.\n\n\n\n");
+			cyclereset_snl = 0;
+			pvPut(cyclereset_snl);	
+
+			for(i=0;i<=13;i++){
+				cardwrite_out[i]=0;
+				cardwrite_in[i]=0;
+				pvPut(cardwrite_out[i]);
+				pvPut(cardwrite_in[i]);
+			}
+
+			for(i=0;i<=13;i++){
+				printf("cardwrite_in[%d] is %Id.\n",i,cardwrite_in[i]);
+				printf("cardwrite_out[%d] is %Id.\n",i,cardwrite_out[i]);
+			}
+		} state ringhall_in_01 
+	}
+
+	state ringhall_in_01{
+		when(delay(5)){
+		cardwrite_in[0] = 1001;
+		pvPut(cardwrite_in[0]);
+		} state ringhall_in_02
+	}
+
+	state ringhall_in_02{
+		when(delay(5)){
+		cardwrite_in[1] = 1002;
+		pvPut(cardwrite_in[1]);
+		} state ringhall_in_03
+	}
+
+	state ringhall_in_03{
+		when(delay(5)){
+		cardwrite_in[2] = 1003;
+		pvPut(cardwrite_in[2]);
+		} state ringhall_in_04
+	}
+
+	state ringhall_in_04{
+		when(delay(5)){
+		cardwrite_in[3] = 1004;
+		pvPut(cardwrite_in[3]);
+		} state ringhall_in_05
+	}
+
+	state ringhall_in_05{
+		when(delay(5)){
+		cardwrite_in[4] = 1005;
+		pvPut(cardwrite_in[4]);
+		} state ringhall_in_06
+	}
+
+	state ringhall_in_06{
+		when(delay(5)){
+		cardwrite_in[5] = 1006;
+		pvPut(cardwrite_in[5]);
+		} state ringhall_in_07
+	}
+
+	state ringhall_in_07{
+		when(delay(5)){
+		cardwrite_in[6] = 1007;
+		pvPut(cardwrite_in[6]);
+		} state ringcenter_in_01
+	}
+
+
+	state ringcenter_in_01{
+		when(delay(5)){
+		cardwrite_out[11] = 2001;
+		pvPut(cardwrite_out[11]);
+		} state ringcenter_in_02
+	}
+
+	state ringcenter_in_02{
+		when(delay(5)){
+		cardwrite_out[11] = 2002;
+		pvPut(cardwrite_out[11]);
+		} state ringcenter_out_01
+	}	
+
+
+	state ringcenter_out_01{
+		when(delay(5)){
+		cardwrite_in[11] = 2001;
+		pvPut(cardwrite_in[11]);
+		} state ringcenter_out_02
+	}
+
+	state ringcenter_out_02{
+		when(delay(5)){
+		cardwrite_in[11] = 2002;
+		pvPut(cardwrite_in[11]);
+		} state ringhall_out_01
+	}
+
+
+
+	state ringhall_out_01{
+		when(delay(5)){
+		cardwrite_out[0] = 1007;
+		pvPut(cardwrite_out[0]);
+		} state ringhall_out_02
+	}
+
+	state ringhall_out_02{
+		when(delay(5)){
+		cardwrite_out[1] = 1006;
+		pvPut(cardwrite_out[1]);
+		} state ringhall_out_03
+	}
+
+	state ringhall_out_03{
+		when(delay(5)){
+		cardwrite_out[2] = 1005;
+		pvPut(cardwrite_out[2]);
+		} state ringhall_out_04
+	}
+
+	state ringhall_out_04{
+		when(delay(5)){
+		cardwrite_out[3] = 1004;
+		pvPut(cardwrite_out[3]);
+		} state ringhall_out_05
+	}
+
+	state ringhall_out_05{
+		when(delay(5)){
+		cardwrite_out[4] = 1003;
+		pvPut(cardwrite_out[4]);
+		} state ringhall_out_06
+	}
+
+	state ringhall_out_06{
+		when(delay(5)){
+		cardwrite_out[5] = 1002;
+		pvPut(cardwrite_out[5]);
+		} state ringhall_out_07
+	}
+
+	state ringhall_out_07{
+		when(delay(5)){
+		cardwrite_out[6] = 1001;
+		pvPut(cardwrite_out[6]);
+		} state linac_in_01
+	}
+
+	state linac_in_01{
+		when(delay(5)){
+		cardwrite_in[9] = 3001;
+		pvPut(cardwrite_in[9]);
+		} state linac_in_02
+	}
+
+	state linac_in_02{
+		when(delay(5)){
+		cardwrite_in[10] = 3002;
+		pvPut(cardwrite_in[10]);
+		} state linac_out_01
+	}
+
+	state linac_out_01{
+		when(delay(5)){
+		cardwrite_out[9] = 3002;
+		pvPut(cardwrite_out[9]);
+		} state linac_out_02
+	}
+
+	state linac_out_02{
+		when(delay(5)){
+		cardwrite_out[10] = 3001;
+		pvPut(cardwrite_out[10]);
+		} state delay
+	}
+
+	state delay{
+		when(delay(5)){
+		for(i=0; i<=13; i++ ){
+			cardwrite_in[i]=0;
+			cardwrite_out[i]=0;
+			pvPut(cardwrite_in[i]);		
+			pvPut(cardwrite_out[i]);				
+		}
+
+		printf("1 cycle is down!!!\n");
+		cyclereset_snl = 1;
+		printf("Now caput 'cyclereset:ao' into %d.\n",cyclereset_snl);
+		pvPut(cyclereset_snl);			
+
+		} state init 	
+	}
+
+}
